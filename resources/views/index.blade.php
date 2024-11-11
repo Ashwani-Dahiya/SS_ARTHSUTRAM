@@ -6,7 +6,7 @@
     <main class="main__content_wrapper">
         <!-- Start slider section -->
 
-        {{--
+
         <section class="hero__slider--section">
             <div class="hero__slider--inner hero__slider--activation swiper">
                 <div class="hero__slider--wrapper swiper-wrapper">
@@ -38,7 +38,7 @@
                 <div class="swiper__nav--btn swiper-button-next"></div>
                 <div class="swiper__nav--btn swiper-button-prev"></div>
             </div>
-        </section> --}}
+        </section>
 
         <!-- End slider section -->
 
@@ -67,7 +67,7 @@
                         </a>
                     </div>
                 </div> --}}
-                    <div class="col-lg-12 mb-28">
+                    {{-- <div class="col-lg-12 mb-28">
                         <div class="row row-cols-lg-3 row-cols-sm-3 row-cols-3">
                             @foreach ($categories as $categorie)
                                 <div class="col-6 col-md-4 mb-28">
@@ -83,7 +83,7 @@
                             @endforeach
 
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>

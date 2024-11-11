@@ -27,7 +27,7 @@
 
     <style>
         .main__header {
-            background-color: rgb(235, 178, 94);
+            background-color: rgb(250, 152, 217);
         }
 
         .header__account--btn {
@@ -37,7 +37,7 @@
         }
 
         .header__sticky.sticky {
-            background-color: rgb(235, 178, 94);
+            background-color: rgb(250, 152, 217);
 
         }
 
@@ -47,11 +47,11 @@
         }
 
         #mainDiv {
-            background-color: rgb(235, 178, 94);
+            background-color:rgb(250, 152, 217);
         }
 
         #footerBg {
-            background-color: rgb(235, 178, 94);
+            background-color: rgb(250, 152, 217);
         }
 
         .footer__widget--menu__text {

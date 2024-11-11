@@ -20,15 +20,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $comp_webtitle = "Pacific Mall Online Wear Shop";
-        $comp_name = "pacific-mall";
-        $comp_mobile = "+91 8002442002";
-        $comp_mobile1 = "+91 8002442002";
-        $comp_email = "shubhzzpayment@gmail.com";
-        $comp_email1 = "shubhzzpayment@gmail.com";
-        $comp_gst = "27ABNCS1399FIZV";
+        $comp_webtitle = "ARTHSUTRAM SOLUTION PRIVATE LIMITED";
+        $comp_name = "ARTHSUTRAM";
+        $comp_mobile = "+91 7276419292";
+        $comp_mobile1 = "+91 7276419292";
+        $comp_email = "ARTHSUTRAMSP11@GMAIL.COM";
+        $comp_email1 = "ARTHSUTRAMSP11@GMAIL.COM";
+        $comp_gst = "27ABBCA3944L1ZH";
         $comp_address = "Shubhzz Payment Technologies PRIVATE LIMITED
-         C/ORAJENDRA AVHAD, 73/1. 
+         C/ORAJENDRA AVHAD, 73/1.
          KOPARGAON BET.  Kopargaon.
         Ahmed Nagar- 423601. Maharashtra";
         view()->share('comp_name', $comp_name);

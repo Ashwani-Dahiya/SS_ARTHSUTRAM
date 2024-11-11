@@ -2,130 +2,14 @@
 
 namespace App\Http\Controllers;
 
-public function all_order_page()
-{
-    $pendingOrders = null;
-    $shippedOrders = null;
-    $canceledOrders = null;
-    $deliveredOrders = null;
-    $acceptedOrders = null;
-    $items = [];
-
-    // Retrieve orders with 'pending' status and their associated items
-    $orders = OrderModel::with('user')->orderBy('id', 'DESC')->get();
-
-    foreach ($orders as $order) {
-        // Retrieve order items along with their associated products
-        $items[$order->id] = OrderItemModel::with('product')->where('order_id', $order->id)->get();
-
-        // Determine the status of the order and store it in the corresponding array
-        switch ($order->order_status) {
-            case 'pending':
-                $pendingOrders[] = $order;
-                break;
-            case 'shipped':
-                $shippedOrders[] = $order;
-                break;
-            case 'cancelled':
-                $canceledOrders[] = $order;
-                break;
-            case 'delivered':
-                $deliveredOrders[] = $order;
-                break;
-            case 'accepted':
-                $acceptedOrders[] = $order;
-                break;
-            default:
-                // Handle unknown status if needed
-                break;
-        }
-    }
-
-    // Return the view with all the orders and items
-    return view('admin.all_orders', compact('pendingOrders', 'shippedOrders', 'canceledOrders', 'deliveredOrders', 'items', 'acceptedOrders'));
-}
-
-
-
-
-public function update_status(Request $request, $id)
-{
-    // Validate the input fields
-    $validatedData = $request->validate([
-        'status' => 'required|string',
-        'estimate_date' => 'required_if:status,accepted|nullable|date',
-        'cancel_reason' => 'required_if:status,cancelled|nullable|string',
-    ]);
-
-    // Check if the order is being cancelled
-    if ($request->status == "cancelled") {
-        // Update the order for cancellation
-        OrderModel::where('id', $id)->update([
-            'order_status' => $request->status,
-            'cancelled_by_admin' => "1",
-            'cancelled_by' => "admin",
-            'cancelled_date' => now(),  // Use Laravel's `now()` helper for the current timestamp
-            'cancelled_remark' => $request->cancel_reason,
-        ]);
-        return redirect()->back()->with('success', 'Order Cancelled Successfully');
-    } else {
-        // Update the order for status other than 'cancelled'
-        OrderModel::where('id', $id)->update([
-            'order_status' => $request->status,
-            'estimate_date' => $request->estimate_date,
-        ]);
-        return redirect()->back()->with('success', 'Status Updated Successfully');
-    }
-}
-
-public function view_order($id)
-{
-    $order = OrderModel::findOrFail($id);
-    $paymentInfo = json_decode($order->payment_info, true);
-    if (!$order) {
-        redirect()->back()->with('error', 'Order not found');
-    }
-
-    $user_id = $order->user_id;
-    $user = User::findOrFail($user_id);
-
-    $allOrders = OrderModel::where('user_id', $user_id)->get();
-
-    $items = OrderItemModel::where('order_id', $order->id)->get();
-    $product = ProductModel::whereIn('id', $items->pluck('product_id'))->first();
-    $address = AddressModel::where('id', $order->address_id)->first();
-    $brand = BrandModel::where('id', $product->brand_id)->first();
-    $category = CategorieModel::where('id', $product->category_id)->first();
-    return view('admin.view_orders_details', compact('order', 'allOrders', 'user', 'items', 'product', 'address', 'brand', 'category', 'paymentInfo'));
-}
-
-
-public function datewise_order_page()
-{
-    $ordersData = [];
-
-    $orders = OrderModel::all();
-
-    foreach ($orders as $order) {
-        $user = User::find($order->user_id);
-        $item = OrderItemModel::where('order_id', $order->id)->first();
-        if ($item) {
-            $product = ProductModel::find($item->product_id);
-        } else {
-            $product = null;
-        }
-
-        // Build an array containing data for each order
-        $ordersData[] = [
-            'order' => $order,
-            'user' => $user,
-            'product' => $product,
-            'item' => $item,
-        ];
-    }
-
-    return view('admin.datewise_orders', compact('ordersData'));
-}
+use App\Models\AddressModel;
+use App\Models\BrandModel;
+use App\Models\CartModel;
+use App\Models\CategorieModel;
+use App\Models\OrderItemModel;
+use App\Models\OrderModel;
+use App\Models\ProductModel;
+use App\Models\ReasonModel;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Carbon;

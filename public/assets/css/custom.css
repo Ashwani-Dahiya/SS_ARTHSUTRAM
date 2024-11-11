@@ -1,0 +1,38 @@
+.cr-wish-notify,
+.cr-compare-notify,
+.cr-cart-notify {
+    position: fixed;
+    right: 15px;
+    top: 20px;
+    z-index: 99;
+}
+.cr-wish-notify p,
+.cr-compare-notify p,
+.cr-cart-notify p {
+    padding: 15px 20px;
+    background-color: #fff;
+    font-size: 16px;
+    color: #000;
+    border-bottom: 5px solid #8c203f;
+    border-radius: 5px;
+    display: block;
+    -webkit-box-shadow: 2px 2px 15px 0 rgba(0, 0, 0, 0.07);
+    box-shadow: 2px 2px 15px 0 rgba(0, 0, 0, 0.07);
+}
+.cr-wish-notify p i,
+.cr-compare-notify p i,
+.cr-cart-notify p i {
+    margin-right: 5px;
+}
+.cr-wish-notify a,
+.cr-compare-notify a,
+.cr-cart-notify a {
+    color: #8c203f;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.cr-wish-notify a:hover,
+.cr-compare-notify a:hover,
+.cr-cart-notify a:hover {
+    color: #000;
+}

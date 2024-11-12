@@ -13,7 +13,7 @@
     background-color: #fff;
     font-size: 16px;
     color: #000;
-    border-bottom: 5px solid #8c203f;
+    border-bottom: 5px solid #d31b5d;
     border-radius: 5px;
     display: block;
     -webkit-box-shadow: 2px 2px 15px 0 rgba(0, 0, 0, 0.07);
@@ -27,7 +27,7 @@
 .cr-wish-notify a,
 .cr-compare-notify a,
 .cr-cart-notify a {
-    color: #8c203f;
+    color: #d31b5d;
     text-decoration: underline;
     text-underline-offset: 2px;
 }

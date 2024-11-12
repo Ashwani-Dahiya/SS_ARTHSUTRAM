@@ -27,7 +27,7 @@
 
     <style>
         .main__header {
-            background-color: rgb(250, 152, 217);
+            background-color: #ff92c8;
         }
 
         .header__account--btn {
@@ -37,7 +37,7 @@
         }
 
         .header__sticky.sticky {
-            background-color: rgb(250, 152, 217);
+            background-color: #ff92c8;
 
         }
 
@@ -47,11 +47,11 @@
         }
 
         #mainDiv {
-            background-color:rgb(250, 152, 217);
+            background-color:#ff92c8;
         }
 
         #footerBg {
-            background-color: rgb(250, 152, 217);
+            background-color: #ff92c8;
         }
 
         .footer__widget--menu__text {
@@ -78,7 +78,7 @@
         }
 
         .highlighted {
-            background-color: #8c203f;
+            background-color: #d31b5d;
             color: white;
         }
 
@@ -169,7 +169,7 @@
                     <div class="main__logo">
                         <h1 class="main__logo--title"><a class="main__logo--link" href="{{ route('home.page') }}"><img
                                     class="main__logo--img" src="{{ asset('assets/img/logo/pacific_logo.png') }}"
-                                    alt="logo-img" width="150" height="50"></a></h1>
+                                    alt="logo-img" width="90" height="60" ></a></h1>
                     </div>
                     <div class="header__search--widget header__sticky--none d-none d-lg-block">
                         <form class="d-flex header__search--form" action="{{ route('search.products.post') }}"

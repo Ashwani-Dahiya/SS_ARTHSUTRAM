@@ -406,19 +406,19 @@
                                         class="continue__shipping--btn primary__btn border-radius-5">Pay COD</button>
 
 
-                                    {{-- <form action="{{ route('razorpay.payment.store') }}" method="POST" id="form1">
+                                    <form action="{{ route('razorpay.payment.store') }}" method="POST" id="form1">
                                         @csrf
                                         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
                                         <div id="payBtn" class=" continue__shipping--btn primary__btn border-radius-5"
                                             style="margin-left: 10px;cursor: pointer;" form="#form1">Pay Online
                                         </div>
                                     </form>
-                                    --}}
 
 
-                                    <div id="pay_QR_UPI" class="continue__shipping--btn primary__btn border-radius-5 "
+
+                                    {{-- <div id="pay_QR_UPI" class="continue__shipping--btn primary__btn border-radius-5 "
                                         style="margin-left: 10px;cursor: pointer;" form="#form1">Pay Online
-                                    </div>
+                                    </div> --}}
 
                                     {{-- <div class="btn btn-info" id="paytest">paytest</div> --}}
 

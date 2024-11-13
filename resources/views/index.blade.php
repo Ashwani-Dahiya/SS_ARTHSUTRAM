@@ -4,43 +4,59 @@
     <p class="wish-note">Add product in <a href="#"> Cart </a> Successfully!</p>
 </div> --}}
     <main class="main__content_wrapper">
-        <!-- Start slider section -->
-
-
         <section class="hero__slider--section">
             <div class="hero__slider--inner hero__slider--activation swiper">
                 <div class="hero__slider--wrapper swiper-wrapper">
                     @foreach ($banner as $banners)
-                        <div class="swiper-slide ">
+                    <div class="swiper-slide">
                             <div class="hero__slider--items home1__slider--bg"
-                                style="background: url('{{ asset('uploads/Main Bannner/' . $banners->image) }}');
-                    background-repeat: no-repeat;
-                    background-attachment: scroll;
-                    height:100vh;
-                    width:100vw;
-                    background-position: center center;
-                    background-size: cover;">
+                                 style="background: url('{{ asset('uploads/Main Bannner/' . $banners->image) }}');
+                                        background-repeat: no-repeat;
+                                        height: 100vh;
+                                        width: 100vw;
+                                        background-position: center center;
+                                        background-size: cover;">
                                 <div class="container-fluid">
                                     <div class="hero__slider--items__inner">
                                         <div class="row row-cols-1">
                                             <div class="col">
-
+                                                <!-- Add content here if needed -->
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                    </div>
                     @endforeach
-
-
                 </div>
                 <div class="swiper__nav--btn swiper-button-next"></div>
                 <div class="swiper__nav--btn swiper-button-prev"></div>
             </div>
         </section>
-
         <!-- End slider section -->
+
+        <!-- Responsive styles -->
+        <style>
+            /* Default styles */
+            .home1__slider--bg {
+                height: 100vh;
+                background-size: cover;
+            }
+
+            /* Tablet adjustments */
+            @media (max-width: 991px) {
+                .home1__slider--bg {
+                    height: 250px !important;
+                }
+            }
+
+            /* Mobile adjustments */
+            @media (max-width: 767px) {
+                .home1__slider--bg {
+                    height: 250px !important;
+                }
+            }
+        </style>
 
         <!-- Start banner section -->
         <section class="banner__section p-3">
@@ -96,7 +112,7 @@
                 <div class="section__heading text-center mb-35">
                     <h2 class="section__heading--maintitle">New Products</h2>
                 </div>
-                
+
                 <div class="tab_content">
                     <div id="featured" class="tab_pane active show">
                         <div class="product__section--inner">

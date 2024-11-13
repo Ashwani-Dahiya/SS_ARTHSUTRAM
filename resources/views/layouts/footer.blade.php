@@ -14,9 +14,10 @@
                 </h2>
                 <ul class="footer__widget--menu footer__widget--inner">
                     @foreach ($categories as $categorie)
-                        <li class="footer__widget--menu__list text-black"><a class="footer__widget--menu__text"
-                                href="{{ route('shop.page.find.categorie', ['catName' => $categorie->url_link]) }}">{{ $categorie->name }}</a>
-                        </li>
+                    <li class="footer__widget--menu__list text-black"><a class="footer__widget--menu__text"
+                            href="{{ route('shop.page.find.categorie', ['catName' => $categorie->url_link]) }}">{{
+                            $categorie->name }}</a>
+                    </li>
                     @endforeach
                 </ul>
             </div>
@@ -97,8 +98,8 @@
                             href="mailto:{{ $comp_email }}">{{ $comp_email }}</a></li>
                     <li class="footer__widget--menu__list text-black">Phone : <a class="footer__widget--menu__text"
                             href="tel:{{ $comp_mobile }}">{{ $comp_mobile }}</a></li>
-                    <li class="footer__widget--menu__list text-black">GST : <a
-                            class="footer__widget--menu__text">{{ $comp_gst }}</a></li>
+                    <li class="footer__widget--menu__list text-black">GST : <a class="footer__widget--menu__text">{{
+                            $comp_gst }}</a></li>
 
                     <div class="quickview__social d-flex align-items-center mb-15 mt-4">
                         <label class="quickview__social--title">Social</label>
@@ -140,15 +141,57 @@
                     </div>
                 </ul>
             </div>
-        </div>
-        <div class="footer__bottom d-flex justify-content-between align-items-center">
-            <p class="copyright__content text-black m-0">Copyright © 2024 <a class="copyright__content--link"
-                    href="{{ route('home') }}">{{ $comp_name }}</a> . All Rights Reserved.Design By
-                {{ $comp_name }}</p>
-            <div class="footer__payment text-right">
-                <img class="display-block" src="{{ asset('assets/img/other/safe-checkout.png') }}" alt="visa-card">
+            <div class="footer__widget">
+                <h4 class="footer__widget--title text-black">ONLINE SHOPPING MADE EASY AT {{ $comp_name }}
+                    <button class="footer__widget--button" aria-label="footer widget button">
+                        <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
+                            width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
+                            <path d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z"
+                                transform="translate(-6 -8.59)" fill="currentColor"></path>
+                        </svg>
+                    </button>
+                </h4>
+                <ul class="footer__widget--menu footer__widget--inner">
+                    <p class="text-muted">
+                        If you would like to experience the best of online shopping for men, women and kids in India,
+                        you are at the right place. {{ $comp_name }} is the ultimate destination for fashion and
+                        lifestyle, being host to a wide array of merchandise including clothing, accessories, jewellery,
+                        personal products and more. It is time to redefine your style statement with our treasure-trove
+                        of trendy items. Our online store brings you the latest in designer products straight out of
+                        fashion houses. You can shop online at {{ $comp_name }} from the comfort of your home and get
+                        your favourites delivered right to your doorstep.
+                    </p>
+                </ul>
+            </div>
+            <div class="footer__widget">
+                <h4 class="footer__widget--title text-black">SHOP ONLINE AT {{ $comp_name }} WITH COMPLETE CONVENIENCE
+                    <button class="footer__widget--button" aria-label="footer widget button">
+                        <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
+                            width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
+                            <path d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z"
+                                transform="translate(-6 -8.59)" fill="currentColor"></path>
+                        </svg>
+                    </button>
+                </h4>
+                <ul class="footer__widget--menu footer__widget--inner">
+                    <p class="text-muted">
+                        Another reason why {{ $comp_name }} is the best of all online stores is the complete convenience that it offers. You can view your favourite brands with price options for different products in one place. A user-friendly interface will guide you through your selection process. Comprehensive size charts, product information and high-resolution images help you make the best buying decisions. You also have the freedom to choose your payment options, be it card or cash-on-delivery. The 14-day returns policy gives you more power as a buyer. Additionally, the try-and-buy option for select products takes customer-friendliness to the next level.
+                    </p>
+                    <p>
+                        Enjoy the hassle-free experience as you shop comfortably from your home or your workplace. You can also shop for your friends, family and loved-ones and avail our gift services for special occasions.
+                    </p>
+                </ul>
             </div>
         </div>
+    </div>
+    <div class="footer__bottom d-flex justify-content-between align-items-center">
+        <p class="copyright__content text-black m-0">Copyright © 2024 <a class="copyright__content--link"
+                href="{{ route('home') }}">{{ $comp_name }}</a> . All Rights Reserved.Design By
+            {{ $comp_name }}</p>
+        <div class="footer__payment text-right">
+            <img class="display-block" src="{{ asset('assets/img/other/safe-checkout.png') }}" alt="visa-card">
+        </div>
+    </div>
     </div>
 </footer>
 <!-- End footer section -->

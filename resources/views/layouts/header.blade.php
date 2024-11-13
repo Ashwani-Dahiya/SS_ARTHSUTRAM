@@ -53,7 +53,7 @@
         }
 
         #footerBg {
-            background-color: #deddde;
+            background-color: #FAFBFC;
         }
 
         .footer__widget--menu__text {
@@ -153,7 +153,7 @@
                                             <a class="header__menu--link highlighted "
                                                 href="{{ route('shop.page.find.categorie', ['catName' => "suit-set"])
                                                 }}">
-                                                Suit Set
+                                                Cloth
                                             </a>
                                         </li>
                                         <li class="header__menu--items d-none d-xl-block">

@@ -149,82 +149,54 @@
                                             </a>
 
                                         </li>
-                                        @php
-                                        $i = 0;
-                                        $totalCategories = count($categories);
-                                        @endphp
-
-                                        @foreach ($categories as $categorie)
-                                        @php $i++; @endphp
-                                        @if ($i <= 2) <li class="header__menu--items d-none d-xl-block">
-                                            <a class="header__menu--link @if($categorie->highlight == 'Yes') highlighted @endif"
-                                                href="{{ route('shop.page.find.categorie', ['catName' => $categorie->url_link]) }}">
-                                                {{ $categorie->name }}
+                                        <li class="header__menu--items d-none d-xl-block">
+                                            <a class="header__menu--link highlighted "
+                                                href="{{ route('shop.page.find.categorie', ['catName' => "suit-set"])
+                                                }}">
+                                                Suit Set
                                             </a>
-                                            </li>
-                                            @endif
-                                            @endforeach
-
-                                            @if ($totalCategories > 6)
-                                            <li class="header__menu--items">
-                                                <a class="header__menu--link " href="#">More
-                                                    <svg class="menu__arrowdown--icon"
-                                                        xmlns="http://www.w3.org/2000/svg" width="12" height="7.41"
-                                                        viewBox="0 0 12 7.41">
-                                                        <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z"
-                                                            transform="translate(-6 -8.59)" fill="currentColor"
-                                                            opacity="0.7" />
-                                                    </svg>
-                                                </a>
-                                                <ul class="header__sub--menu">
-                                                    @foreach ($categories as $key => $categorie)
-                                                    @if ($key >= 6)
-                                                    <li class="header__sub--menu__items">
-                                                        <a href="{{ route('shop.page.find.categorie', ['catName' => $categorie->url_link]) }}"
-                                                            class="header__sub--menu__link">
-                                                            {{ $categorie->name }}
-                                                        </a>
-                                                    </li>
-                                                    @endif
-                                                    @endforeach
-                                                </ul>
-                                            </li>
-                                            @endif
+                                        </li>
+                                        <li class="header__menu--items d-none d-xl-block">
+                                            <a class="header__menu--link "
+                                                href="{{ route('shop.page.find.categorie', ['catName' => "jewellery"])
+                                                }}">
+                                                Jewellery
+                                            </a>
+                                        </li>
 
 
-                                            {{-- <li class="header__menu--items">
-                                                <a class="header__menu--link" href="#">Pages
-                                                    <svg class="menu__arrowdown--icon"
-                                                        xmlns="http://www.w3.org/2000/svg" width="12" height="7.41"
-                                                        viewBox="0 0 12 7.41">
-                                                        <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z"
-                                                            transform="translate(-6 -8.59)" fill="currentColor"
-                                                            opacity="0.7" />
-                                                    </svg>
-                                                </a>
-                                                <ul class="header__sub--menu">
-                                                    <li class="header__sub--menu__items"><a
-                                                            href="{{ route('about.page') }}"
-                                                            class="header__sub--menu__link">About Us</a></li>
-                                                    <li class="header__sub--menu__items"><a
-                                                            href="{{ route('contact.page') }}"
-                                                            class="header__sub--menu__link">Contact Us</a></li>
-                                                    <li class="header__sub--menu__items"><a href="cart.html"
-                                                            class="header__sub--menu__link">Cart Page</a></li>
-                                                    <li class="header__sub--menu__items"><a href="portfolio.html"
-                                                            class="header__sub--menu__link">Portfolio Page</a></li>
-                                                    <li class="header__sub--menu__items"><a href="wishlist.html"
-                                                            class="header__sub--menu__link">Wishlist Page</a></li>
-                                                    <li class="header__sub--menu__items"><a href="{{ route('login') }}"
-                                                            class="header__sub--menu__link">Login Page</a></li>
-                                                    <li class="header__sub--menu__items"><a href="404.html"
-                                                            class="header__sub--menu__link">Error Page</a></li>
-                                                </ul>
-                                            </li> --}}
-                                            {{-- <li class="header__menu--items">
-                                                <a class="header__menu--link" href="{{ route('contact.page') }}">Contact
-                                                </a>
-                                            </li> --}}
+
+                                        {{-- <li class="header__menu--items">
+                                            <a class="header__menu--link" href="#">Pages
+                                                <svg class="menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
+                                                    width="12" height="7.41" viewBox="0 0 12 7.41">
+                                                    <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z"
+                                                        transform="translate(-6 -8.59)" fill="currentColor"
+                                                        opacity="0.7" />
+                                                </svg>
+                                            </a>
+                                            <ul class="header__sub--menu">
+                                                <li class="header__sub--menu__items"><a href="{{ route('about.page') }}"
+                                                        class="header__sub--menu__link">About Us</a></li>
+                                                <li class="header__sub--menu__items"><a
+                                                        href="{{ route('contact.page') }}"
+                                                        class="header__sub--menu__link">Contact Us</a></li>
+                                                <li class="header__sub--menu__items"><a href="cart.html"
+                                                        class="header__sub--menu__link">Cart Page</a></li>
+                                                <li class="header__sub--menu__items"><a href="portfolio.html"
+                                                        class="header__sub--menu__link">Portfolio Page</a></li>
+                                                <li class="header__sub--menu__items"><a href="wishlist.html"
+                                                        class="header__sub--menu__link">Wishlist Page</a></li>
+                                                <li class="header__sub--menu__items"><a href="{{ route('login') }}"
+                                                        class="header__sub--menu__link">Login Page</a></li>
+                                                <li class="header__sub--menu__items"><a href="404.html"
+                                                        class="header__sub--menu__link">Error Page</a></li>
+                                            </ul>
+                                        </li> --}}
+                                        {{-- <li class="header__menu--items">
+                                            <a class="header__menu--link" href="{{ route('contact.page') }}">Contact
+                                            </a>
+                                        </li> --}}
                                     </ul>
                                 </nav>
                             </div>

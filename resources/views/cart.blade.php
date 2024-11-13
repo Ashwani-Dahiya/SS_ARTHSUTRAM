@@ -95,8 +95,13 @@ $totalPrice=0;
                                                         <h4 class="cart__content--title"><a
                                                                 href="{{ route('product.detail.page',['id'=>$cart->product->id]) }}z">{{
                                                                 $cart->product->name }}</a></h4>
-                                                        <span class="cart__content--variant">COLOR: {{ $cart->product->colors }}</span>
-                                                        <span class="cart__content--variant">SIZE: {{ $cart->size }}</span>
+                                                        <span class="cart__content--variant">COLOR: {{
+                                                            $cart->product->colors }}</span>
+                                                        @if ($cart->product->categories->name=="Jewellery")
+                                                        @else
+                                                        <span class="cart__content--variant">SIZE: {{ $cart->size
+                                                            }}</span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </td>
@@ -180,7 +185,8 @@ $totalPrice=0;
                                             </tr>
                                             <tr class="cart__summary--total__list">
                                                 <td class="cart__summary--total__title text-left">GRAND TOTAL</td>
-                                                <td class="cart__summary--amount text-right cr-cart-total2" id="hideen2">
+                                                <td class="cart__summary--amount text-right cr-cart-total2"
+                                                    id="hideen2">
                                                     ₹{{ $totalPrice }}</td>
                                                 <td class="cart__summary--amount text-right cr-cart-total2 d-none"
                                                     id="finalprice2"></td>
@@ -244,14 +250,13 @@ $totalPrice=0;
                         <div class="product__items ">
                             <div class="product__items--thumbnail">
                                 <a class="produSct__items--link"
-                                href="{{ route('product.detail.page', ['id' => $items->id]) }}">
-                                <img class="product__items--img product__primary--img"
-                                    src="{{ asset('uploads/Products Images/' . $items->image) }}"
-                                    alt="product-img">
-                                <img class="product__items--img product__secondary--img"
-                                    src="{{ asset('uploads/Products Images/' . $items->image2) }}"
-                                    alt="product-img">
-                            </a>
+                                    href="{{ route('product.detail.page', ['id' => $items->id]) }}">
+                                    <img class="product__items--img product__primary--img"
+                                        src="{{ asset('uploads/Products Images/' . $items->image) }}" alt="product-img">
+                                    <img class="product__items--img product__secondary--img"
+                                        src="{{ asset('uploads/Products Images/' . $items->image2) }}"
+                                        alt="product-img">
+                                </a>
                                 <div class="product__badge">
                                     <span class="product__badge--items sale">Sale</span>
                                 </div>
@@ -261,7 +266,8 @@ $totalPrice=0;
                                     {{ $items->categories ? $items->categories->name : 'Uncategorized' }}
                                 </span>
                                 <h3 class="product__items--content__title h4"><a
-                                        href="{{ route('product.detail.page', ['id' => $items->id]) }}">{{ $items->name }}</a>
+                                        href="{{ route('product.detail.page', ['id' => $items->id]) }}">{{ $items->name
+                                        }}</a>
                                 </h3>
                                 <div class="product__items--price">
                                     <span class="current__price">₹{{ $items->discounted_price }}</span>
@@ -274,24 +280,21 @@ $totalPrice=0;
                                         <a class="product__items--action__btn"
                                             href="{{ route('product.detail.page', ['id' => $items->id]) }}">
                                             <svg class="product__items--action__btn--svg"
-                                                xmlns="http://www.w3.org/2000/svg" width="22.51"
-                                                height="20.443" viewBox="0 0 14.706 13.534">
+                                                xmlns="http://www.w3.org/2000/svg" width="22.51" height="20.443"
+                                                viewBox="0 0 14.706 13.534">
                                                 <g transform="translate(0 0)">
                                                     <g>
                                                         <path data-name="Path 16787"
                                                             d="M4.738,472.271h7.814a.434.434,0,0,0,.414-.328l1.723-6.316a.466.466,0,0,0-.071-.4.424.424,0,0,0-.344-.179H3.745L3.437,463.6a.435.435,0,0,0-.421-.353H.431a.451.451,0,0,0,0,.9h2.24c.054.257,1.474,6.946,1.555,7.33a1.36,1.36,0,0,0-.779,1.242,1.326,1.326,0,0,0,1.293,1.354h7.812a.452.452,0,0,0,0-.9H4.74a.451.451,0,0,1,0-.9Zm8.966-6.317-1.477,5.414H5.085l-1.149-5.414Z"
-                                                            transform="translate(0 -463.248)"
-                                                            fill="currentColor">
+                                                            transform="translate(0 -463.248)" fill="currentColor">
                                                         </path>
                                                         <path data-name="Path 16788"
                                                             d="M5.5,478.8a1.294,1.294,0,1,0,1.293-1.353A1.325,1.325,0,0,0,5.5,478.8Zm1.293-.451a.452.452,0,1,1-.431.451A.442.442,0,0,1,6.793,478.352Z"
-                                                            transform="translate(-1.191 -466.622)"
-                                                            fill="currentColor">
+                                                            transform="translate(-1.191 -466.622)" fill="currentColor">
                                                         </path>
                                                         <path data-name="Path 16789"
                                                             d="M13.273,478.8a1.294,1.294,0,1,0,1.293-1.353A1.325,1.325,0,0,0,13.273,478.8Zm1.293-.451a.452.452,0,1,1-.431.451A.442.442,0,0,1,14.566,478.352Z"
-                                                            transform="translate(-2.875 -466.622)"
-                                                            fill="currentColor">
+                                                            transform="translate(-2.875 -466.622)" fill="currentColor">
                                                         </path>
                                                     </g>
                                                 </g>

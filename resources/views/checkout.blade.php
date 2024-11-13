@@ -101,11 +101,12 @@
                                                                         style="text-transform: uppercase;">COLOR: {{
                                                                         $cart->product->colors }}</span>
 
-                                                                   @if ($cart->product->categories->name=="Jewellery")
-                                                        @else
-                                                        <span class="cart__content--variant">SIZE: {{ $cart->size
-                                                            }}</span>
-                                                        @endif
+                                                                    @if ($cart->product->categories->name=="Jewellery")
+                                                                    @else
+                                                                    <span class="cart__content--variant">SIZE: {{
+                                                                        $cart->size
+                                                                        }}</span>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -122,23 +123,18 @@
                                             @php
                                             $deliveryCharge = 0;
 
-                                            if ($totalPrice < 500) {
-                                                $deliveryCharge = $formattedValue;
-                                            }
+                                            if ($totalPrice < 500) { $deliveryCharge=$formattedValue; }
+                                                $finalPrice=$totalPrice + $deliveryCharge; @endphp @if ($deliveryCharge>
+                                                0)
+                                                <div>
+                                                    <span class="text-left">Delivery Charges</span>
+                                                    <span class="text-right">₹{{ $deliveryCharge }}</span>
+                                                </div>
+                                                @else
+                                                <p class="text-success">Free Delivery</p>
+                                                @endif
 
-                                            $finalPrice = $totalPrice + $deliveryCharge;
-                                        @endphp
-
-                                        @if ($deliveryCharge > 0)
-                                            <div>
-                                                <span class="text-left">Delivery Charges</span>
-                                                <span class="text-right">₹{{ $deliveryCharge }}</span>
-                                            </div>
-                                        @else
-                                            <p class="text-success">Free Delivery</p>
-                                        @endif
-
-                                        <p class="text-success">Expected delivery within 5 days.</p>
+                                                <p class="text-success">Expected delivery within 5 days.</p>
 
 
                                         </div>
@@ -479,23 +475,17 @@
                                 @php
                                 $deliveryCharge = 0;
 
-                                if ($totalPrice < 500) {
-                                    $deliveryCharge = $formattedValue;
-                                }
+                                if ($totalPrice < 500) { $deliveryCharge=$formattedValue; } $finalPrice=$totalPrice +
+                                    $deliveryCharge; @endphp @if ($deliveryCharge> 0)
+                                    <div>
+                                        <span class="text-left">Delivery Charges</span>
+                                        <span class="text-right">₹{{ $deliveryCharge }}</span>
+                                    </div>
+                                    @else
+                                    <p class="text-success">Free Delivery</p>
+                                    @endif
 
-                                $finalPrice = $totalPrice + $deliveryCharge;
-                            @endphp
-
-                            @if ($deliveryCharge > 0)
-                                <div>
-                                    <span class="text-left">Delivery Charges</span>
-                                    <span class="text-right">₹{{ $deliveryCharge }}</span>
-                                </div>
-                            @else
-                                <p class="text-success">Free Delivery</p>
-                            @endif
-
-                            <p class="text-success">Expected delivery within 5 days.</p>
+                                    <p class="text-success">Expected delivery within 5 days.</p>
 
 
                             </div>

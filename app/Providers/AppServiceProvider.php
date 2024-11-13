@@ -24,13 +24,11 @@ class AppServiceProvider extends ServiceProvider
         $comp_name = "ARTHSUTRAM";
         $comp_mobile = "+91 7276419292";
         $comp_mobile1 = "+91 7276419292";
-        $comp_email = "ARTHSUTRAMSP11@GMAIL.COM";
-        $comp_email1 = "ARTHSUTRAMSP11@GMAIL.COM";
+        $comp_email = "arthsutramsp11@gmail.com";
+        $comp_email1 = "arthsutramsp11@gmail.com";
         $comp_gst = "27ABBCA3944L1ZH";
-        $comp_address = "Shubhzz Payment Technologies PRIVATE LIMITED
-         C/ORAJENDRA AVHAD, 73/1.
-         KOPARGAON BET.  Kopargaon.
-        Ahmed Nagar- 423601. Maharashtra";
+        $comp_address = "ARTHSUTRAM SOLUTION PRIVATE LIMITED
+594, LAXMI ROAD, Sadashiv Peth, Pune City, Pune- 411030, Maharashtra.";
         view()->share('comp_name', $comp_name);
         view()->share('comp_mobile', $comp_mobile);
         view()->share('comp_mobile1', $comp_mobile1);

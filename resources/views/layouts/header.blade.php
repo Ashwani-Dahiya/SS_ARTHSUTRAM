@@ -27,7 +27,7 @@
 
     <style>
         .main__header {
-            background-color: #ff92c8;
+            background-color: #ffffff;
         }
 
         .header__account--btn {
@@ -37,7 +37,7 @@
         }
 
         .header__sticky.sticky {
-            background-color: #ff92c8;
+            background-color: #ffffff;
 
         }
 
@@ -47,11 +47,13 @@
         }
 
         #mainDiv {
-            background-color:#ff92c8;
+            background-color: #ffffff;
+            width: 410px;
+            margin: 0px
         }
 
         #footerBg {
-            background-color: #ff92c8;
+            background-color: #deddde;
         }
 
         .footer__widget--menu__text {
@@ -85,6 +87,11 @@
         .header__menu--link.highlighted:hover {
             color: rgb(229, 223, 223);
         }
+
+        .header__account2--items {
+            display: flex;
+            align-items: center
+        }
     </style>
 </head>
 
@@ -93,7 +100,7 @@
 
     <!-- Start header area -->
     <header class="header__section">
-        {{-- <div class="header__topbar bg__secondary">
+        <div class="header__topbar bg__secondary">
             <div class="container-fluid">
                 <div class="header__topbar--inner d-flex align-items-center justify-content-between">
                     <div class="header__shipping">
@@ -101,59 +108,18 @@
                             <li class="header__shipping--text text-white">Welcome to {{ $comp_name }} online Store</li>
                             <li class="header__shipping--text text-white d-sm-2-none"><img
                                     class="header__shipping--text__icon" src="{{ asset('assets/img/icon/bus.png') }}"
-                                    alt="bus-icon"> Track Your Order</li>
+                                    alt="bus-icon">Fast Delivery</li>
                             <li class="header__shipping--text text-white d-sm-2-none"><img
                                     class="header__shipping--text__icon" src="{{ asset('assets/img/icon/email.png') }}"
                                     alt="email-icon"> <a class="header__shipping--text__link"
                                     href="{{ $comp_email }}">{{ $comp_email }}</a></li>
                         </ul>
                     </div>
-                    <div class="language__currency d-none d-lg-block">
-                        <ul class="d-flex align-items-center">
-                            <li class="language__currency--list">
-                                <a class="language__switcher text-white" href="#">
-                                    <img class="language__switcher--icon__img" src="assets/img/icon/language-icon.png"
-                                        alt="currency">
-                                    <span>English</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="11.797" height="9.05"
-                                        viewBox="0 0 9.797 6.05">
-                                        <path d="M14.646,8.59,10.9,12.329,7.151,8.59,6,9.741l4.9,4.9,4.9-4.9Z"
-                                            transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7" />
-                                    </svg>
-                                </a>
-                                <div class="dropdown__language">
-                                    <ul>
-                                        <li class="language__items"><a class="language__text" href="#">France</a></li>
-                                        <li class="language__items"><a class="language__text" href="#">Russia</a></li>
-                                        <li class="language__items"><a class="language__text" href="#">Spanish</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="language__currency--list">
-                                <a class="account__currency--link text-white" href="#">
-                                    <img src="assets/img/icon/usd-icon.png" alt="currency">
-                                    <span>$ US Dollar</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="11.797" height="9.05"
-                                        viewBox="0 0 9.797 6.05">
-                                        <path d="M14.646,8.59,10.9,12.329,7.151,8.59,6,9.741l4.9,4.9,4.9-4.9Z"
-                                            transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7" />
-                                    </svg>
-                                </a>
-                                <div class="dropdown__currency">
-                                    <ul>
-                                        <li class="currency__items"><a class="currency__text" href="#">CAD</a></li>
-                                        <li class="currency__items"><a class="currency__text" href="#">CNY</a></li>
-                                        <li class="currency__items"><a class="currency__text" href="#">EUR</a></li>
-                                        <li class="currency__items"><a class="currency__text" href="#">GBP</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+
                 </div>
             </div>
-        </div> --}}
-        <div class="main__header header__sticky">
+        </div>
+        <div class="main__header header__sticky ">
             <div class="container-fluid">
                 <div class="main__header--inner position__relative d-flex justify-content-between align-items-center">
                     <div class="offcanvas__header--menu__open ">
@@ -169,7 +135,104 @@
                     <div class="main__logo">
                         <h1 class="main__logo--title"><a class="main__logo--link" href="{{ route('home.page') }}"><img
                                     class="main__logo--img" src="{{ asset('assets/img/logo/pacific_logo.png') }}"
-                                    alt="logo-img" width="90" height="60" ></a></h1>
+                                    alt="logo-img" width="90" height="60"></a></h1>
+                    </div>
+                    <div class="container-fluid" id="mainDiv">
+                        <div
+                            class="header__bottom--inner position__relative d-none d-lg-flex justify-content-around align-items-center">
+                            <div class="header__menu">
+                                <nav class="header__menu--navigation">
+                                    <ul class="d-flex">
+                                        <li class="header__menu--items">
+                                            <a class="header__menu--link" href="{{ route('home.page') }}">Home
+
+                                            </a>
+
+                                        </li>
+                                        @php
+                                        $i = 0;
+                                        $totalCategories = count($categories);
+                                        @endphp
+
+                                        @foreach ($categories as $categorie)
+                                        @php $i++; @endphp
+                                        @if ($i <= 2) <li class="header__menu--items d-none d-xl-block">
+                                            <a class="header__menu--link @if($categorie->highlight == 'Yes') highlighted @endif"
+                                                href="{{ route('shop.page.find.categorie', ['catName' => $categorie->url_link]) }}">
+                                                {{ $categorie->name }}
+                                            </a>
+                                            </li>
+                                            @endif
+                                            @endforeach
+
+                                            @if ($totalCategories > 6)
+                                            <li class="header__menu--items">
+                                                <a class="header__menu--link " href="#">More
+                                                    <svg class="menu__arrowdown--icon"
+                                                        xmlns="http://www.w3.org/2000/svg" width="12" height="7.41"
+                                                        viewBox="0 0 12 7.41">
+                                                        <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z"
+                                                            transform="translate(-6 -8.59)" fill="currentColor"
+                                                            opacity="0.7" />
+                                                    </svg>
+                                                </a>
+                                                <ul class="header__sub--menu">
+                                                    @foreach ($categories as $key => $categorie)
+                                                    @if ($key >= 6)
+                                                    <li class="header__sub--menu__items">
+                                                        <a href="{{ route('shop.page.find.categorie', ['catName' => $categorie->url_link]) }}"
+                                                            class="header__sub--menu__link">
+                                                            {{ $categorie->name }}
+                                                        </a>
+                                                    </li>
+                                                    @endif
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                            @endif
+
+
+                                            {{-- <li class="header__menu--items">
+                                                <a class="header__menu--link" href="#">Pages
+                                                    <svg class="menu__arrowdown--icon"
+                                                        xmlns="http://www.w3.org/2000/svg" width="12" height="7.41"
+                                                        viewBox="0 0 12 7.41">
+                                                        <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z"
+                                                            transform="translate(-6 -8.59)" fill="currentColor"
+                                                            opacity="0.7" />
+                                                    </svg>
+                                                </a>
+                                                <ul class="header__sub--menu">
+                                                    <li class="header__sub--menu__items"><a
+                                                            href="{{ route('about.page') }}"
+                                                            class="header__sub--menu__link">About Us</a></li>
+                                                    <li class="header__sub--menu__items"><a
+                                                            href="{{ route('contact.page') }}"
+                                                            class="header__sub--menu__link">Contact Us</a></li>
+                                                    <li class="header__sub--menu__items"><a href="cart.html"
+                                                            class="header__sub--menu__link">Cart Page</a></li>
+                                                    <li class="header__sub--menu__items"><a href="portfolio.html"
+                                                            class="header__sub--menu__link">Portfolio Page</a></li>
+                                                    <li class="header__sub--menu__items"><a href="wishlist.html"
+                                                            class="header__sub--menu__link">Wishlist Page</a></li>
+                                                    <li class="header__sub--menu__items"><a href="{{ route('login') }}"
+                                                            class="header__sub--menu__link">Login Page</a></li>
+                                                    <li class="header__sub--menu__items"><a href="404.html"
+                                                            class="header__sub--menu__link">Error Page</a></li>
+                                                </ul>
+                                            </li> --}}
+                                            {{-- <li class="header__menu--items">
+                                                <a class="header__menu--link" href="{{ route('contact.page') }}">Contact
+                                                </a>
+                                            </li> --}}
+                                    </ul>
+                                </nav>
+                            </div>
+                            {{-- <p class="header__discount--text"><img class="header__discount--icon__img"
+                                    src="{{ asset('assets/img/icon/lamp.png') }}" alt="lamp-img"> Special up to 60% Off
+                                all item
+                            </p> --}}
+                        </div>
                     </div>
                     <div class="header__search--widget header__sticky--none d-none d-lg-block">
                         <form class="d-flex header__search--form" action="{{ route('search.products.post') }}"
@@ -287,234 +350,64 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="header__menu d-none header__sticky--block d-lg-block">
-                        <nav class="header__menu--navigation">
-                            <ul class="d-flex">
-                                <li class="header__menu--items style2">
-                                    <a class="header__menu--link" href="{{ route('home.page') }}">Home
-                                        {{-- <svg class="menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12"
-                                            height="7.41" viewBox="0 0 12 7.41">
-                                            <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z"
-                                                transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7" />
-                                        </svg> --}}
-                                    </a>
-                                    {{-- <ul class="header__sub--menu">
-                                        <li class="header__sub--menu__items"><a href="{{ route('home.page') }}"
-                                                class="header__sub--menu__link">Home One</a></li>
-                                        <li class="header__sub--menu__items"><a href="index-2.html"
-                                                class="header__sub--menu__link">Home Two</a></li>
-                                        <li class="header__sub--menu__items"><a href="index-3.html"
-                                                class="header__sub--menu__link">Home Three</a></li>
-                                    </ul> --}}
-                                </li>
 
-
-                                @php
-                                $i = 0;
-                                $totalCategories = count($categories);
-                                @endphp
-
-                                @foreach ($categories as $categorie)
-                                @php $i++; @endphp
-                                @if ($i <= 6) <li class="header__menu--items d-none d-xl-block">
-                                    <a class="header__menu--link @if($categorie->highlight == 'Yes') highlighted @endif"
-                                        href="{{ route('shop.page.find.categorie', ['catName' => $categorie->url_link]) }}">
-                                        {{ $categorie->name }}
-                                    </a>
-                                    </li>
-                                    @endif
-                                    @endforeach
-
-                                    @if ($totalCategories > 6)
-                                    <li class="header__menu--items">
-                                        <a class="header__menu--link " href="#">More
-                                            <svg class="menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
-                                                width="12" height="7.41" viewBox="0 0 12 7.41">
-                                                <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z"
-                                                    transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7" />
-                                            </svg>
-                                        </a>
-                                        <ul class="header__sub--menu">
-                                            @foreach ($categories as $key => $categorie)
-                                            @if ($key >= 6)
-                                            <li class="header__sub--menu__items">
-                                                <a href="{{ route('shop.page.find.categorie', ['catName' => $categorie->url_link]) }}"
-                                                    class="header__sub--menu__link">
-                                                    {{ $categorie->name }}
-                                                </a>
-                                            </li>
-                                            @endif
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                    @endif
-
-
-                                {{-- <li class="header__menu--items mega__menu--items style2">
-                                    <a class="header__menu--link" href="{{ route('shop.page') }}">Shop --}}
-                                        {{-- <svg class="menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
-                                            width="12" height="7.41" viewBox="0 0 12 7.41"> --}}
-                                            {{--
-                                            <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z"
-                                                transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7" />
-                                        </svg>
-                                    </a> --}}
-                                    {{-- <ul class="header__mega--menu d-flex">
-                                        <li class="header__mega--menu__li">
-                                            <span class="header__mega--subtitle">Column One</span>
-                                            <ul class="header__mega--sub__menu">
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title"
-                                                        href="{{ route('shop.page') }}">Shop Left Sidebar</a></li>
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title"
-                                                        href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title"
-                                                        href="shop-grid.html">Shop Grid</a></li>
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title"
-                                                        href="shop-grid-list.html">Shop Grid List</a></li>
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title"
-                                                        href="shop-list.html">Shop List</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="header__mega--menu__li">
-                                            <span class="header__mega--subtitle">Column Two</span>
-                                            <ul class="header__mega--sub__menu">
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title"
-                                                        href="product-details.html">Product Details</a></li>
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title"
-                                                        href="product-video.html">Video Product</a></li>
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title"
-                                                        href="product-details.html">Variable Product</a></li>
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title"
-                                                        href="product-left-sidebar.html">Product Left Sidebar</a></li>
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title"
-                                                        href="product-gallery.html">Product Gallery</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="header__mega--menu__li">
-                                            <span class="header__mega--subtitle">Column Three</span>
-                                            <ul class="header__mega--sub__menu">
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title"
-                                                        href="{{ route('login') }}">My Account</a></li>
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title"
-                                                        href="my-account-2.html">My Account 2</a></li>
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title" href="404.html">404
-                                                        Page</a></li>
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title"
-                                                        href="{{ route('login') }}">Login Page</a></li>
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title" href="faq.html">Faq
-                                                        Page</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="header__mega--menu__li">
-                                            <span class="header__mega--subtitle">Column Four</span>
-                                            <ul class="header__mega--sub__menu">
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title"
-                                                        href="compare.html">Compare Pages</a></li>
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title"
-                                                        href="checkout.html">Checkout page</a></li>
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title"
-                                                        href="checkout-2.html">Checkout Style 2</a></li>
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title"
-                                                        href="checkout-3.html">Checkout Style 3</a></li>
-                                                <li class="header__mega--sub__menu_li"><a
-                                                        class="header__mega--sub__menu--title"
-                                                        href="checkout-4.html">Checkout Style 4</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul> --}}
-                                    {{--
-                                </li> --}}
-                                {{-- <li class="header__menu--items style2">
-                                    <a class="header__menu--link" href="{{ route('about.page') }}">About US </a>
-                                </li> --}}
-                                {{-- <li class="header__menu--items style2">
-                                    <a class="header__menu--link" href="blog.html">Blog
-                                        <svg class="menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12"
-                                            height="7.41" viewBox="0 0 12 7.41">
-                                            <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z"
-                                                transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7" />
-                                        </svg>
-                                    </a>
-                                    <ul class="header__sub--menu">
-                                        <li class="header__sub--menu__items"><a href="blog.html"
-                                                class="header__sub--menu__link">Blog Grid</a></li>
-                                        <li class="header__sub--menu__items"><a href="blog-details.html"
-                                                class="header__sub--menu__link">Blog Details</a></li>
-                                        <li class="header__sub--menu__items"><a href="blog-left-sidebar.html"
-                                                class="header__sub--menu__link">Blog Left Sidebar</a></li>
-                                        <li class="header__sub--menu__items"><a href="blog-right-sidebar.html"
-                                                class="header__sub--menu__link">Blog Right Sidebar</a></li>
-                                    </ul>
-                                </li> --}}
-                                {{-- <li class="header__menu--items style2 d-none d-xl-block">
-                                    <a class="header__menu--link" href="{{ route('shop.page') }}">Categories </a>
-                                </li> --}}
-                                {{-- <li class="header__menu--items style2">
-                                    <a class="header__menu--link" href="#">Pages
-                                        <svg class="menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12"
-                                            height="7.41" viewBox="0 0 12 7.41">
-                                            <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z"
-                                                transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7" />
-                                        </svg>
-                                    </a>
-                                    <ul class="header__sub--menu">
-                                        <li class="header__sub--menu__items"><a href="{{ route('about.page') }}"
-                                                class="header__sub--menu__link">About Us</a></li>
-                                        <li class="header__sub--menu__items"><a href="{{ route('contact.page') }}"
-                                                class="header__sub--menu__link">Contact Us</a></li>
-                                        <li class="header__sub--menu__items"><a href="cart.html"
-                                                class="header__sub--menu__link">Cart Page</a></li>
-                                        <li class="header__sub--menu__items"><a href="portfolio.html"
-                                                class="header__sub--menu__link">Portfolio Page</a></li>
-                                        <li class="header__sub--menu__items"><a href="wishlist.html"
-                                                class="header__sub--menu__link">Wishlist Page</a></li>
-                                        <li class="header__sub--menu__items"><a href="{{ route('login') }}"
-                                                class="header__sub--menu__link">Login Page</a></li>
-                                        <li class="header__sub--menu__items"><a href="404.html"
-                                                class="header__sub--menu__link">Error Page</a></li>
-                                    </ul>
-                                </li> --}}
-                                {{-- <li class="header__menu--items style2">
-                                    <a class="header__menu--link " href="{{ route('contact.page') }}">Contact </a>
-                                </li> --}}
-                            </ul>
-                        </nav>
-                    </div>
                     <div class="header__account header__account2 header__sticky--block">
                         <ul class="d-flex">
                             <li
                                 class="header__account--items header__account2--items  header__account--search__items d-none d-lg-block">
-                                <a class="header__account--btn search__open--btn" href="javascript:void(0)"
-                                    data-offcanvas>
-                                    <svg class="header__search--button__svg" xmlns="http://www.w3.org/2000/svg"
-                                        width="26.51" height="23.443" viewBox="0 0 512 512">
-                                        <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"
-                                            fill="none" stroke="currentColor" stroke-miterlimit="10"
-                                            stroke-width="32" />
-                                        <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                            stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448" />
-                                    </svg>
-                                    <span class="visually-hidden">Search</span>
-                                </a>
+                                <div class="header__search--widget">
+                                    <form class="d-flex header__search--form"
+                                        action="{{ route('search.products.post') }}" method="POST">
+                                        @csrf
+                                        <div class="header__select--categories select">
+                                            <select class="header__select--inner" name="categorie">
+                                                <option value="0" {{ isset($searchedCatID) && $searchedCatID==0
+                                                    ? 'selected' : '' }}>All Categories</option>
+                                                @if (isset($allcategories) && $allcategories->count() > 0)
+                                                @foreach ($allcategories as $categorie)
+                                                <option value="{{ $categorie->id }}" {{ isset($searchedCatID) &&
+                                                    $searchedCatID==$categorie->id ? 'selected' : '' }}>
+                                                    {{ $categorie->name }}
+                                                </option>
+                                                @endforeach
+                                                @else
+                                                @foreach ($categories as $categorie)
+                                                <option value="{{ $categorie->id }}" {{ isset($searchedCatID) &&
+                                                    $searchedCatID==$categorie->id ? 'selected' : '' }}>
+                                                    {{ $categorie->name }}
+                                                </option>
+                                                @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                        <div class="header__search--box">
+                                            <label>
+                                                <input class="header__search--input" placeholder="Suit Set, Dress"
+                                                    type="text" name="name"
+                                                    value="{{ isset($searchedName) ? $searchedName : '' }}">
+                                            </label>
+                                            <button class="header__search--button bg__secondary text-white"
+                                                type="submit" aria-label="search button">
+                                                <svg class="header__search--button__svg"
+                                                    xmlns="http://www.w3.org/2000/svg" width="27.51" height="26.443"
+                                                    viewBox="0 0 512 512">
+                                                    <path
+                                                        d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"
+                                                        fill="none" stroke="currentColor" stroke-miterlimit="10"
+                                                        stroke-width="32">
+                                                    </path>
+                                                    <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                                        stroke-miterlimit="10" stroke-width="32"
+                                                        d="M338.29 338.29L448 448"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </form>
+
+
+
+
+                                </div>
                             </li>
                             <li class="header__account--items header__account2--items">
                                 <a class="header__account--btn" href="{{ route('login') }}">
@@ -532,18 +425,6 @@
                                     <span class="visually-hidden">My Account</span>
                                 </a>
                             </li>
-                            {{-- <li class="header__account--items header__account2--items d-none d-lg-block">
-                                <a class="header__account--btn" href="wishlist.html">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="28.51" height="23.443"
-                                        viewBox="0 0 512 512">
-                                        <path
-                                            d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
-                                            fill="none" stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round" stroke-width="32"></path>
-                                    </svg>
-                                    <span class="items__count  wishlist style2">02</span>
-                                </a>
-                            </li> --}}
                             <li class="header__account--items header__account2--items">
                                 <a class="header__account--btn " href="{{ route('cart.page') }}" data-offcanvas
                                     id="cartLink">
@@ -575,106 +456,7 @@
 
         </style>
         <div class="header__botto">
-            <div class="container-fluid" id="mainDiv">
-                <div
-                    class="header__bottom--inner position__relative d-none d-lg-flex justify-content-between align-items-center">
-                    <div class="header__menu">
-                        <nav class="header__menu--navigation">
-                            <ul class="d-flex">
-                                <li class="header__menu--items">
-                                    <a class="header__menu--link" href="{{ route('home.page') }}">Home
-                                        {{-- <svg class="menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12"
-                                            height="7.41" viewBox="0 0 12 7.41">
-                                            <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z"
-                                                transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7" />
-                                        </svg> --}}
-                                    </a>
-                                    {{-- <ul class="header__sub--menu">
-                                        <li class="header__sub--menu__items"><a href="{{ route('home.page') }}"
-                                                class="header__sub--menu__link">Home One</a></li>
-                                        <li class="header__sub--menu__items"><a href="index-2.html"
-                                                class="header__sub--menu__link">Home Two</a></li>
-                                        <li class="header__sub--menu__items"><a href="index-3.html"
-                                                class="header__sub--menu__link">Home Three</a></li>
-                                    </ul> --}}
-                                </li>
-                                @php
-                                $i = 0;
-                                $totalCategories = count($categories);
-                                @endphp
 
-                                @foreach ($categories as $categorie)
-                                @php $i++; @endphp
-                                @if ($i <= 6) <li class="header__menu--items d-none d-xl-block">
-                                    <a class="header__menu--link @if($categorie->highlight == 'Yes') highlighted @endif"
-                                        href="{{ route('shop.page.find.categorie', ['catName' => $categorie->url_link]) }}">
-                                        {{ $categorie->name }}
-                                    </a>
-                                    </li>
-                                    @endif
-                                    @endforeach
-
-                                    @if ($totalCategories > 6)
-                                    <li class="header__menu--items">
-                                        <a class="header__menu--link " href="#">More
-                                            <svg class="menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
-                                                width="12" height="7.41" viewBox="0 0 12 7.41">
-                                                <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z"
-                                                    transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7" />
-                                            </svg>
-                                        </a>
-                                        <ul class="header__sub--menu">
-                                            @foreach ($categories as $key => $categorie)
-                                            @if ($key >= 6)
-                                            <li class="header__sub--menu__items">
-                                                <a href="{{ route('shop.page.find.categorie', ['catName' => $categorie->url_link]) }}"
-                                                    class="header__sub--menu__link">
-                                                    {{ $categorie->name }}
-                                                </a>
-                                            </li>
-                                            @endif
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                    @endif
-
-
-                                    {{-- <li class="header__menu--items">
-                                        <a class="header__menu--link" href="#">Pages
-                                            <svg class="menu__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
-                                                width="12" height="7.41" viewBox="0 0 12 7.41">
-                                                <path d="M16.59,8.59,12,13.17,7.41,8.59,6,10l6,6,6-6Z"
-                                                    transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7" />
-                                            </svg>
-                                        </a>
-                                        <ul class="header__sub--menu">
-                                            <li class="header__sub--menu__items"><a href="{{ route('about.page') }}"
-                                                    class="header__sub--menu__link">About Us</a></li>
-                                            <li class="header__sub--menu__items"><a href="{{ route('contact.page') }}"
-                                                    class="header__sub--menu__link">Contact Us</a></li>
-                                            <li class="header__sub--menu__items"><a href="cart.html"
-                                                    class="header__sub--menu__link">Cart Page</a></li>
-                                            <li class="header__sub--menu__items"><a href="portfolio.html"
-                                                    class="header__sub--menu__link">Portfolio Page</a></li>
-                                            <li class="header__sub--menu__items"><a href="wishlist.html"
-                                                    class="header__sub--menu__link">Wishlist Page</a></li>
-                                            <li class="header__sub--menu__items"><a href="{{ route('login') }}"
-                                                    class="header__sub--menu__link">Login Page</a></li>
-                                            <li class="header__sub--menu__items"><a href="404.html"
-                                                    class="header__sub--menu__link">Error Page</a></li>
-                                        </ul>
-                                    </li> --}}
-                                    {{-- <li class="header__menu--items">
-                                        <a class="header__menu--link" href="{{ route('contact.page') }}">Contact </a>
-                                    </li> --}}
-                            </ul>
-                        </nav>
-                    </div>
-                    {{-- <p class="header__discount--text"><img class="header__discount--icon__img"
-                            src="{{ asset('assets/img/icon/lamp.png') }}" alt="lamp-img"> Special up to 60% Off all item
-                    </p> --}}
-                </div>
-            </div>
         </div>
 
         <!-- Start Offcanvas header menu -->

@@ -16,7 +16,7 @@ class CheckoutController extends Controller
     $totalPrice=0;
     $user = Auth::user();
     $states = StateModel::with('cities')->get();
-    $lastAddress = AddressModel::where('user_id', $user->id)->orderBy('id', 'DESC')->first();
+    $lastAddress = AddressModel::where('user_id', $user->id)->orderBy('id', 'DESC')->get();
     if (!$lastAddress) {
         $lastAddress = NULL;
     }

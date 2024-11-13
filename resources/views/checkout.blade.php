@@ -226,6 +226,59 @@
                                     </ol>
                                 </nav>
                             </header>
+                            @if(!$lastAddress==null)
+                            <div class="container">
+                                <div class="row">
+                                    @php
+                                    $uniqueAddresses = collect($lastAddress)->unique(function ($address) {
+                                        return $address->address_line1 . $address->address_line2 . $address->pin;
+                                    });
+                                @endphp
+
+                                @foreach ($uniqueAddresses as $index => $address)
+                                    <div class="shipping__radio--input col-md-4 border" style="border-radius: 5px; margin-right: 10px;">
+                                        <input
+                                            class="shipping__radio--input__field"
+                                            id="address-{{ $address->id }}"
+                                            name="address"
+                                            type="radio"
+                                            value="{{ $address->id }}"
+                                            required
+                                            data-name="{{ $address->name }}"
+                                            data-address1="{{ $address->address_line1 }}"
+                                            data-address2="{{ $address->address_line2 }}"
+                                            data-nearby="{{ $address->near_by }}"
+                                            data-country="{{ $address->country }}"
+                                            data-pin="{{ $address->pin }}"
+                                            data-email="{{ $address->email }}"
+                                            data-state="{{ $address->state }}"
+                                            data-city="{{ $address->city }}"
+                                            data-phone="{{ Auth::user()->phone }}"
+                                        >
+                                        <label for="address-{{ $address->id }}">
+                                            Address {{ $index + 1 }}
+                                        </label>
+                                        <div class="address-details">
+                                            <strong>{{ $address->name }}</strong>
+                                            <p class="mb-1"><b>Address(1)</b> {{ $address->address_line1 }}</p>
+                                            @if($address->address_line2)
+                                                <p class="mb-1"><b>Address(2)</b> {{ $address->address_line2 }}</p>
+                                            @endif
+                                            @if($address->near_by)
+                                                <p class="mb-1"><b>Near by</b> {{ $address->near_by }}</p>
+                                            @endif
+                                            <p class="mb-1"><b>Country</b> {{ $address->country }}</p>
+                                            <p class="mb-1"><b>Pin</b> {{ $address->pin }}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                                </div>
+                            </div>
+
+                            @endif
+
+
                             <main class="main__content_wrapper">
                                 <p action="#">
                                 <div class="checkout__content--step section__contact--information">
@@ -416,7 +469,8 @@
 
 
 
-                                    {{-- <div id="pay_QR_UPI" class="continue__shipping--btn primary__btn border-radius-5 "
+                                    {{-- <div id="pay_QR_UPI"
+                                        class="continue__shipping--btn primary__btn border-radius-5 "
                                         style="margin-left: 10px;cursor: pointer;" form="#form1">Pay Online
                                     </div> --}}
 
@@ -1046,5 +1100,24 @@ console.log(json);
                 $('select[name="city"]').empty();
             }
         });
+        // On change event for the radio buttons
+    $('input[name="address"]').on('change', function () {
+        // Get data attributes from the selected address
+        const selectedAddress = $(this).data();
+
+        // Populate the form fields with selected address data
+        $('#first_name').val(selectedAddress.name);
+        $('#address1').val(selectedAddress.address1);
+        $('#address2').val(selectedAddress.address2 || '');  // Set to empty if no address2
+        $('#country').val(selectedAddress.country);
+        $('#phone').val(selectedAddress.phone);
+        $('#post_code').val(selectedAddress.pin);
+        $('#email').val(selectedAddress.email);
+
+        // Optionally, clear other fields not specified in address data
+        $('#last_name').val('');
+        $('#state').val(selectedAddress.state);
+        $('#city').val(selectedAddress.city);
+    });
     });
 </script>

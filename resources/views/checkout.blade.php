@@ -236,7 +236,7 @@
                                 @endphp
 
                                 @foreach ($uniqueAddresses as $index => $address)
-                                    <div class="shipping__radio--input col-md-4 border" style="border-radius: 5px; margin-right: 10px;">
+                                    <div class="shipping__radio--input col-md-4 border" style="border-radius: 5px; margin-right: 10px;margin-bottom:10px;">
                                         <input
                                             class="shipping__radio--input__field"
                                             id="address-{{ $address->id }}"

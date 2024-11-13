@@ -459,8 +459,12 @@
                                                         <span class="product__description--variant text-dark"
                                                             style="text-transform: uppercase;">COLOR: {{
                                                             $cart->product->colors }}</span>
-                                                        <span class="cart__content--variant">SIZE: {{ $cart->size
+                                                        @if ($cart->product->categories->name=="Jewellery")
+                                                        @else
+                                                        <span class="cart__content--variant">SIZE: {{
+                                                            $cart->size
                                                             }}</span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </td>

@@ -43,7 +43,7 @@
         <!-- End slider section -->
 
         <!-- Start banner section -->
-        <section class="banner__section section--padding">
+        <section class="banner__section p-3">
             <div class="container-fluid">
                 <div class="row mb--n28">
                     {{-- <div class="col-lg-5 col-md-order mb-28">
@@ -96,14 +96,7 @@
                 <div class="section__heading text-center mb-35">
                     <h2 class="section__heading--maintitle">New Products</h2>
                 </div>
-                <ul class="product__tab--one product__tab--primary__btn d-flex justify-content-center mb-50">
-                    <li class="product__tab--primary__btn__list active" data-toggle="tab" data-target="#featured">Featured
-                    </li>
-                    {{-- <li class="product__tab--primary__btn__list" data-toggle="tab" data-target="#trending">Trending
-                </li>
-                <li class="product__tab--primary__btn__list" data-toggle="tab" data-target="#newarrival">New Arrival
-                </li> --}}
-                </ul>
+                
                 <div class="tab_content">
                     <div id="featured" class="tab_pane active show">
                         <div class="product__section--inner">

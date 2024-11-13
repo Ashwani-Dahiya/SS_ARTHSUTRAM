@@ -6740,8 +6740,10 @@ input.quickview__value--number {
     transform: scale(1.08);
 }
 .breadcrumb__bg {
-    background: url(../img/banner/breadcrumb-bg.png);
+    /* background: url(../img/banner/breadcrumb-bg.png); */
     background-repeat: no-repeat;
+    background-color: black;
+    color: white;
     height: 130px;
     display: -webkit-box;
     display: -ms-flexbox;

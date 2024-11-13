@@ -142,7 +142,7 @@
                 </ul>
             </div>
             <div class="footer__widget">
-                <h4 class="footer__widget--title text-black">ONLINE SHOPPING MADE EASY AT {{ $comp_name }}
+                <h6 class="footer__widget--title text-black">ONLINE SHOPPING MADE EASY AT {{ $comp_name }}
                     <button class="footer__widget--button" aria-label="footer widget button">
                         <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
                             width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
@@ -150,7 +150,7 @@
                                 transform="translate(-6 -8.59)" fill="currentColor"></path>
                         </svg>
                     </button>
-                </h4>
+                </h6>
                 <ul class="footer__widget--menu footer__widget--inner">
                     <p class="text-muted">
                         If you would like to experience the best of online shopping for men, women and kids in India,
@@ -164,7 +164,7 @@
                 </ul>
             </div>
             <div class="footer__widget">
-                <h4 class="footer__widget--title text-black">SHOP ONLINE AT {{ $comp_name }} WITH COMPLETE CONVENIENCE
+                <h6 class="footer__widget--title text-black">SHOP ONLINE AT {{ $comp_name }} WITH COMPLETE CONVENIENCE
                     <button class="footer__widget--button" aria-label="footer widget button">
                         <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg"
                             width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
@@ -172,7 +172,7 @@
                                 transform="translate(-6 -8.59)" fill="currentColor"></path>
                         </svg>
                     </button>
-                </h4>
+                </h6>
                 <ul class="footer__widget--menu footer__widget--inner">
                     <p class="text-muted">
                         Another reason why {{ $comp_name }} is the best of all online stores is the complete convenience that it offers. You can view your favourite brands with price options for different products in one place. A user-friendly interface will guide you through your selection process. Comprehensive size charts, product information and high-resolution images help you make the best buying decisions. You also have the freedom to choose your payment options, be it card or cash-on-delivery. The 14-day returns policy gives you more power as a buyer. Additionally, the try-and-buy option for select products takes customer-friendliness to the next level.

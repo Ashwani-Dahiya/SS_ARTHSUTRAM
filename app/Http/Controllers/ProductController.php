@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 class ProductController extends Controller
 {
     public function product_detail_page($id){
-        $product=ProductModel::findOrFail($id);
+        $product=ProductModel::with('categories')->findOrFail($id);
         $sizes=$product->sizes;
         return view('product-details',compact('product','sizes'));
     }

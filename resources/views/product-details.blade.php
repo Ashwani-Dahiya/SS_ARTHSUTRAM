@@ -166,7 +166,8 @@
                             <p style="font-size: 15px" class="text-success mt-0">Inculsive of all Taxex</p>
                             <p class="product__details--info__desc mb-15"></p>
                             <div class="product__variant">
-
+                                @if($product->categories->name==="Jewellery")
+                                @else
                                 <div class="product__variant--list mb-15">
                                     <fieldset class="variant__input--fieldset weight">
                                         <legend class="product__variant--title mb-8">Available Size in:</legend>
@@ -180,6 +181,8 @@
                                         <span>- Select Size</span>
                                     </fieldset>
                                 </div>
+                                @endif
+
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                 <div class="product__variant--list quantity d-flex align-items-center mb-20">
 

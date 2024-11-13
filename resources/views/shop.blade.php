@@ -47,7 +47,7 @@
 
                                 </ul>
                         </div>
-                        <div class="single__widget widget__bg">
+                        {{-- <div class="single__widget widget__bg">
                             <h2 class="widget__title h3">Product Size</h2>
                             <ul class="widget__form--check">
                                 @php
@@ -64,7 +64,7 @@
 
 
                             </ul>
-                        </div>
+                        </div> --}}
                         <div class="single__widget price__filter widget__bg">
                             <h2 class="widget__title h3">Filter By Price</h2>
                             <div class="price__filter--form__inner mb-15 d-flex align-items-center">

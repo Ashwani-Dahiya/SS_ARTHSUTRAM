@@ -57,7 +57,7 @@ class HomeController extends Controller
     $categorie = CategorieModel::where("name", $decodedCatName)->first();
         if ($categorie) {
             $products = ProductModel::where('category_id', $categorie->id)->get();
-            return view("shop", compact('products','allcategories'));
+            return view("shop", compact('products','allcategories','catName'));
         } else {
             return redirect()->back()->with('error', 'Category not found');
         }

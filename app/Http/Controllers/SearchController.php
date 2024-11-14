@@ -29,8 +29,10 @@ class SearchController extends Controller
     // Pass all categories for the select dropdown and filtered products to the view
     $allcategories = CategorieModel::all();
     $searchedCatID= $category;
+    $category = CategorieModel::find($category);
+    $catName = $category ? $category->name : null;
     $searchedName= $name;
-    return view("shop", compact('products', 'allcategories','searchedCatID','searchedName'));
+    return view("shop", compact('products', 'allcategories','searchedCatID','searchedName','catName'));
 }
 
 }

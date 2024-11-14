@@ -10,7 +10,8 @@ class ShopController extends Controller
 {
    public function shop_page(){
     $allcategories=CategorieModel::all();
+    $catName="";
     $products=ProductModel::all();
-       return view('shop',compact('products','allcategories'));
+       return view('shop',compact('products','allcategories','catName'));
    }
 }

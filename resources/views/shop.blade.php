@@ -12,7 +12,8 @@
                         <ul class="breadcrumb__content--menu d-flex justify-content-center">
                             <li class="breadcrumb__content--menu__items"><a class="text-white"
                                     href="{{ route('home.page') }}">Home</a></li>
-                            <li class="breadcrumb__content--menu__items"><span class="text-white">Our Products</span></li>
+                            <li class="breadcrumb__content--menu__items"><span class="text-white">Our Products</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -25,10 +26,13 @@
     <section class="shop__section section--padding">
         <div class="container-fluid">
             <div class="row">
+
                 <div class="col-xl-3 col-lg-4">
+                    @if($catName=="jewellery")
+                    <h1 class="text-center">Jewellery</h1>
+                    @else
                     <div class="shop__sidebar--widget widget__area d-none d-lg-block">
-                        @if($catName=="jewellery")
-                        @else
+
                         <div class="single__widget widget__bg">
                             <h2 class="widget__title h3">Categories</h2>
                             <form class="price__filter--form" action="{{ route('product.filter.post') }}" method="POST">
@@ -67,7 +71,6 @@
 
                             </ul>
                         </div>
-                        @endif
 
                         <div class="single__widget price__filter widget__bg">
                             <h2 class="widget__title h3">Filter By Price</h2>
@@ -101,8 +104,11 @@
                             <button class="price__filter--btn primary__btn" type="submit">Filter</button>
                             </form>
                         </div>
+
                     </div>
+                    @endif
                 </div>
+
                 <div class="col-xl-9 col-lg-8">
                     <div class="shop__product--wrapper">
                         <div class="tab_content">
@@ -130,7 +136,8 @@
                                                 </div>
                                                 <div class="product__items--content">
                                                     <span class="product__items--content__subtitle">
-                                                        {{ $product->categories ? $product->categories->name : 'Uncategorized' }}
+                                                        {{ $product->categories ? $product->categories->name :
+                                                        'Uncategorized' }}
                                                     </span>
                                                     <h3 class="product__items--content__title h4"><a
                                                             href="{{ route('product.detail.page',['id'=>$product->id]) }}">{{
@@ -204,7 +211,8 @@
                                                 </div>
                                                 <div class="product__list--items__content">
                                                     <span class="product__items--content__subtitle">
-                                                        {{ $product->categories ? $product->categories->name : 'Uncategorized' }}
+                                                        {{ $product->categories ? $product->categories->name :
+                                                        'Uncategorized' }}
                                                     </span>
                                                     <h3 class="product__list--items__content--title h4 mb-10"><a
                                                             href="{{ route('product.detail.page',['id'=>$product->id]) }}">{{

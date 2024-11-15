@@ -61,13 +61,15 @@ Route::put('/cart/update_quantity', [CartController::class, 'updateQuantity'])->
 Route::get('/phpinfo', function () {
     phpinfo();
 });
-Route::get('/get-cities/{stateId}', [UserController::class, 'getCities'])->name('getCities');
-Route::get('/privacy-policy', [FooterPageController::class, 'privacy_policy_page'])->name('privacy.policy.page');
 Route::get('/terms-and-conditions', [FooterPageController::class, 'terms_conditions_page'])->name('terms.conditions.page');
+Route::get('/privacy-policy', [FooterPageController::class, 'privacy_policy_page'])->name('privacy.policy.page');
 Route::get('/returns-and-refunds', [FooterPageController::class, 'returns_refunds_page'])->name('returns.refunds.page');
 Route::get('/shipping-policy', [FooterPageController::class, 'shipping_policy_page'])->name('shipping.policy.page');
+
+
 Route::get('/admin', [AdminControler::class, 'login_page'])->name('adm.login.page');
 Route::post('/admin/login', [AdminControler::class, 'login'])->name('adm.login');
+Route::get('/get-cities/{stateId}', [UserController::class, 'getCities'])->name('getCities');
 
 
 

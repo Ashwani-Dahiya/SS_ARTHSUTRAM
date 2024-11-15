@@ -23,7 +23,16 @@
         line-height: 1.6;
         margin-bottom: 20px;
     }
+    .shipping-policy ul {
+        list-style: disc;
+        margin: 10px 0;
+        padding-left: 10px;
+        color: black;
+    }
 
+    .shipping-policy li {
+        margin-bottom: 10px;
+    }
     /* Media Query for Mobile */
     @media (max-width: 600px) {
         .shipping-policy {
@@ -41,47 +50,17 @@
         }
     }
 </style>
-<div class="shipping-policy border border-light">
-    <h2>Shipping Policy</h2>
-    <p><strong>Effective Date:</strong></p>
-    <p>Thank you for shopping at {{ $comp_name }}</p>
+<div class="shipping-policy">
+    <h1>Shipping Policy</h1>
 
-    <h3>Shipping Zones:</h3>
-    <p>We currently ship to addresses within India.</p>
+    <p>Our orders are shipped through registered domestic courier companies and/or speed post services only. Orders are typically shipped within 7 days from the date of order and/or payment, or as per the agreed delivery date confirmed at the time of order. Shipment timelines are subject to the courier company or post office regulations.</p>
 
-    <h3>Shipping Fees:</h3>
-    <p>Shipping fees are calculated based on the weight of your order and the destination address. You can view the shipping charges at checkout before completing your purchase.</p>
+    <p>The Platform Owner shall not be liable for any delays in delivery caused by the courier company or postal authority.</p>
 
-    <h3>Order Processing Time:</h3>
-    <p>Orders are typically processed and shipped within 1-3 business days after payment confirmation. However, during peak seasons or promotional periods, processing times may be slightly longer.</p>
-
-    <h3>Estimated Delivery Time:</h3>
-    <p>Estimated delivery times vary depending on the shipping destination and the shipping method selected at checkout. Please note that these are estimates and actual delivery times may vary due to factors beyond our control, such as customs processing or weather delays.</p>
-
-    <h3>Tracking Information:</h3>
-    <p>Once your order has been shipped, you will receive a confirmation email with tracking information. You can use this tracking information to monitor the progress of your delivery.</p>
-
-    <h3>Shipping Partners:</h3>
-    <p>We partner with reputable shipping carriers to ensure reliable and timely delivery of your orders.</p>
-
-    <h3>Delivery Attempts:</h3>
-    <p>If a delivery attempt is unsuccessful, the shipping carrier may make additional attempts or hold the package at a local facility for pickup. Please make sure to provide accurate and complete shipping information to avoid any delivery issues.</p>
-
-    <h3>Shipping Restrictions:</h3>
-    <p>Some items may be subject to shipping restrictions due to size, weight, or regulatory reasons. We reserve the right to cancel orders for restricted items or locations.</p>
-
-    <h3>International Shipping:</h3>
-    <p>For international orders, please note that customs duties, taxes, and fees may apply upon delivery. These charges are the responsibility of the recipient and are not included in the item price or shipping cost.</p>
-
-    <h3>Shipping Damage or Loss:</h3>
-    <p>In the rare event that your order is damaged or lost during shipping, please contact us immediately so that we can assist you with filing a claim with the shipping carrier.</p>
-
-    <h3>Questions or Concerns:</h3>
-    <p>If you have any questions or concerns about our shipping policy, please don't hesitate to contact us at {{ $comp_mobile }}.</p>
-
-    <h3>Policy Updates:</h3>
-    <p>We reserve the right to update or modify this shipping policy at any time without prior notice. Please review this policy periodically for any changes.</p>
-
-    <p>By placing an order with {{ $comp_name }}, you agree to the terms and conditions outlined in this shipping policy.</p>
+    <ul>
+        <li>* All orders will be delivered to the address provided by the buyer at the time of purchase.</li>
+        <li>* Delivery of services will be confirmed via the email ID specified at registration.</li>
+        <li>* Any shipping costs levied by the seller or the Platform Owner, if applicable, are non-refundable.</li>
+    </ul>
 </div>
 @endsection

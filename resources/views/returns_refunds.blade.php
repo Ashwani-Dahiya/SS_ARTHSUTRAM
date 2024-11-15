@@ -1,24 +1,29 @@
 @extends('layouts.header')
 @section('content')
-<div class="returns-and-refunds border border-light">
-    <h2>Returns and Refunds Policy</h2>
-    <p><strong>Last Updated:</strong> 10-May-2024</p>
+<div class="returns-and-refunds">
+    <h1>Refund and Cancellation Policy</h1>
 
-    <h3>1. Returns</h3>
-    <p>We accept returns within 10 days of the original purchase date. To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging.</p>
+    <h2>Introduction</h2>
+    <p>This refund and cancellation policy outlines how you can cancel or seek a refund for a product/service purchased through our Platform.</p>
 
-    <h3>2. Refunds</h3>
-    <p>Once we receive your item, we will inspect it and notify you that we have received your returned item. We will immediately notify you on the status of your refund after inspecting the item. If your return is approved, we will initiate a refund to your original method of payment. You will receive the credit within a certain amount of 10 days, depending on your card issuer's policies.</p>
+    <h2>Cancellation Policy</h2>
+    <p>Cancellations will only be considered if requested within 7 days of placing the order. However, if the order has already been communicated to sellers/merchants listed on the Platform and they have initiated shipping, or if the product is out for delivery, cancellation requests may not be entertained. In such a case, you may choose to reject the product upon delivery.</p>
 
-    <!-- Add more sections as needed -->
+    <p>If you have complaints regarding products with a manufacturer’s warranty, please refer the issue to them directly.</p>
 
-    <h3>Contact Us</h3>
-    <p>If you have any questions or concerns about our returns and refunds policy, please don't hesitate to contact us at {{ $comp_email }} </p>
+    <p>In the case of any refunds approved by ARTHSUTRAM SOLUTION PRIVATE LIMITED, it will take 7 days for the refund to be processed.</p>
 
-    <h3>Policy Updates</h3>
-    <p>We reserve the right to update or modify this returns and refunds policy at any time without prior notice. Please review this page periodically for any changes.</p>
+    <h2>Return Policy</h2>
+    <p>We offer refunds/exchanges within the first 30 days from the date of purchase. If 30 days have passed, we will not offer a return, exchange, or refund of any kind.</p>
 
-    <p>By making a purchase with {{ $comp_name }}, you agree to the terms and conditions outlined on this page.</p>
+    <p>To be eligible for a return or exchange, the purchased item must:</p>
+    <ul>
+        <li>* Be unused and in the same condition as received</li>
+        <li>* Have its original packaging</li>
+        <li>* Items purchased on sale may not be eligible for a return/exchange</li>
+    </ul>
+
+    <p>Only items found defective or damaged are eligible for replacement based on an exchange request.</p>
 </div>
 
 
@@ -45,6 +50,16 @@
         font-size: 16px;
         line-height: 1.6;
         margin-bottom: 20px;
+    }
+    .returns-and-refunds ul {
+        list-style: disc;
+        margin: 10px 0;
+        padding-left: 10px;
+        color: black;
+    }
+
+    .returns-and-refunds li {
+        margin-bottom: 10px;
     }
 
     /* Media Query for Mobile */

@@ -33,6 +33,7 @@ class OrderController extends Controller
     private $secret = 'ttyzW9V1lkdu9OaHVgkke12Y';
     private $clientId = "ee4a4fc2-0617-4b81-b85b-c24ee1bdac46";
     private $secretKey = "dcd0aa05-8374-4946-9a4b-de563735732c";
+    private $samaypeKey =  'Authorization: Bearer RvsDLwFHpgZbxYAWd-YC_DYEei8gVqLZQehdNPRMWtHMwMUFYRGHNBnExNzwvGMNVudFbns';
     public function order_page()
     {
         $user = auth()->user();
@@ -343,119 +344,33 @@ class OrderController extends Controller
     {
 
 
+        $curl = curl_init();
 
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.skpays.com/kuber/v1/payment/deep-link',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => '{
+                    "amount": ' . $payment_amount . ',
+                    "order_id": "' . $order_id . '"
+                }',
+            CURLOPT_HTTPHEADER => array(
+                $this->samaypeKey,
+                'Content-Type: application/json'
+            ),
+        ));
 
+        $response = curl_exec($curl);
+        curl_close($curl);
 
-
-
-
-        // URL for the first request
-        $url1 = "https://api.shubhzz-pay.com/api/api/api-module/payin/orders";
-
-        // Data for the first request
-        $data1 = json_encode([
-            "clientId" => $this->clientId,
-            "secretKey" => $this->secretKey,
-            "name" => (string)$name,
-            "mobileNo" => (string)$phone,
-            "emailID" => (string)$email,
-            "amount" => (string)$payment_amount,
-            "clientOrderId" => $order_id
-        ]);
-
-        // Initialize cURL session
-        $ch1 = curl_init($url1);
-
-        // Set the cURL options
-        curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch1, CURLOPT_HTTPHEADER, [
-            'Content-Type: application/json',
-            'Accept: application/json'
-        ]);
-        curl_setopt($ch1, CURLOPT_POST, true);
-        curl_setopt($ch1, CURLOPT_POSTFIELDS, $data1);
-
-        // Execute the first request
-        $response1 = curl_exec($ch1);
-        $res_data['status'] = false;
-        // Check for errors
-        if (curl_errno($ch1)) {
-            $res_data['msg'] = 'Error:' . curl_error($ch1);
-            exit(json_encode($res_data));
-        } else {
-            $result1 = json_decode($response1, true);
-            $res_data['msg2'] = $response1;
-            if (isset($result1['orderId'])) {
-                $orderId = $result1['orderId'];
-            } else {
-
-                $res_data['msg'] = "Order id not created";
-                exit(json_encode($res_data));
-            }
-        }
-
-        // Close the cURL session
-        curl_close($ch1);
-
-
-
-
-
-        // URL for the second request
-        $url2 = "https://api.shubhzz-pay.com/api/api/api-module/payin/intent-initiate";
-
-        // Data for the second request, using the extracted orderId
-        $data2 = json_encode([
-            "clientId" => $this->clientId,
-            "secretKey" => $this->secretKey,
-            "note" => "Playment Add",
-            "orderId" => $orderId  // Use the extracted orderId here
-        ]);
-
-        // Initialize cURL session
-        $ch2 = curl_init($url2);
-
-        // Set the cURL options
-        curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch2, CURLOPT_HTTPHEADER, [
-            'Content-Type: application/json',
-            'Accept: application/json'
-        ]);
-        curl_setopt($ch2, CURLOPT_POST, true);
-        curl_setopt($ch2, CURLOPT_POSTFIELDS, $data2);
-
-        // Execute the second request
-        $response2 = curl_exec($ch2);
-
-        // Check for errors
-        if (curl_errno($ch2)) {
-            $res_data['msg'] = 'Error:' . curl_error($ch2);
-            exit(json_encode($res_data));
-        } else {
-            $result2 = json_decode($response2, true);
-            $res_data['msg3'] = $response2;
-            if (isset($result2['upiurl'])) {
-                $intent =  $result2['upiurl'];
-            } else {
-                $res_data['msg'] = "Intent Not Created";
-                exit(json_encode($res_data));
-            }
-        }
-
-        // Close the cURL session
-        curl_close($ch2);
-
-
-        if (!isset($intent)) {
-            $res_data['msg'] = "Intent Not Created 2";
-            exit(json_encode($res_data));
-        }
-
-
-
-        $php_array = [];
-
-
+        $data =  json_decode($response, true);
+        $orderId = $data['data']['payment_id'];
+        $intent = $data['data']['deep_link'];
 
 
 
@@ -472,6 +387,134 @@ class OrderController extends Controller
         // $response =json_encode($php_array);
         // response()->json($php_array);
         return  $php_array;
+
+
+
+
+
+        // // URL for the first request
+        // $url1 = "https://api.shubhzz-pay.com/api/api/api-module/payin/orders";
+
+        // // Data for the first request
+        // $data1 = json_encode([
+        //     "clientId" => $this->clientId,
+        //     "secretKey" => $this->secretKey,
+        //     "name" => (string)$name,
+        //     "mobileNo" => (string)$phone,
+        //     "emailID" => (string)$email,
+        //     "amount" => (string)$payment_amount,
+        //     "clientOrderId" => $order_id
+        // ]);
+
+        // // Initialize cURL session
+        // $ch1 = curl_init($url1);
+
+        // // Set the cURL options
+        // curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch1, CURLOPT_HTTPHEADER, [
+        //     'Content-Type: application/json',
+        //     'Accept: application/json'
+        // ]);
+        // curl_setopt($ch1, CURLOPT_POST, true);
+        // curl_setopt($ch1, CURLOPT_POSTFIELDS, $data1);
+
+        // // Execute the first request
+        // $response1 = curl_exec($ch1);
+        // $res_data['status'] = false;
+        // // Check for errors
+        // if (curl_errno($ch1)) {
+        //     $res_data['msg'] = 'Error:' . curl_error($ch1);
+        //     exit(json_encode($res_data));
+        // } else {
+        //     $result1 = json_decode($response1, true);
+        //     $res_data['msg2'] = $response1;
+        //     if (isset($result1['orderId'])) {
+        //         $orderId = $result1['orderId'];
+        //     } else {
+
+        //         $res_data['msg'] = "Order id not created";
+        //         exit(json_encode($res_data));
+        //     }
+        // }
+
+        // // Close the cURL session
+        // curl_close($ch1);
+
+
+
+
+
+        // // URL for the second request
+        // $url2 = "https://api.shubhzz-pay.com/api/api/api-module/payin/intent-initiate";
+
+        // // Data for the second request, using the extracted orderId
+        // $data2 = json_encode([
+        //     "clientId" => $this->clientId,
+        //     "secretKey" => $this->secretKey,
+        //     "note" => "Playment Add",
+        //     "orderId" => $orderId  // Use the extracted orderId here
+        // ]);
+
+        // // Initialize cURL session
+        // $ch2 = curl_init($url2);
+
+        // // Set the cURL options
+        // curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch2, CURLOPT_HTTPHEADER, [
+        //     'Content-Type: application/json',
+        //     'Accept: application/json'
+        // ]);
+        // curl_setopt($ch2, CURLOPT_POST, true);
+        // curl_setopt($ch2, CURLOPT_POSTFIELDS, $data2);
+
+        // // Execute the second request
+        // $response2 = curl_exec($ch2);
+
+        // // Check for errors
+        // if (curl_errno($ch2)) {
+        //     $res_data['msg'] = 'Error:' . curl_error($ch2);
+        //     exit(json_encode($res_data));
+        // } else {
+        //     $result2 = json_decode($response2, true);
+        //     $res_data['msg3'] = $response2;
+        //     if (isset($result2['upiurl'])) {
+        //         $intent =  $result2['upiurl'];
+        //     } else {
+        //         $res_data['msg'] = "Intent Not Created";
+        //         exit(json_encode($res_data));
+        //     }
+        // }
+
+        // // Close the cURL session
+        // curl_close($ch2);
+
+
+        // if (!isset($intent)) {
+        //     $res_data['msg'] = "Intent Not Created 2";
+        //     exit(json_encode($res_data));
+        // }
+
+
+
+        // $php_array = [];
+
+
+
+
+
+
+
+
+        // $php_array['intent'] =   preg_replace('/tn=([^&]*)/', 'tn=' . $order_id, $intent);
+
+
+        // $php_array['order_id'] = $order_id;
+        // $php_array['server_order_id'] = $orderId;
+        // $php_array['status'] = true;
+
+        // // $response =json_encode($php_array);
+        // // response()->json($php_array);
+        // return  $php_array;
     }
 
     public function check_order_status($order_id): JsonResponse
@@ -492,6 +535,141 @@ class OrderController extends Controller
         $mydata['status'] = false;
         $php_array = [];
         $php_array['status'] = false;
+
+        // Skpays status
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.skpays.com/kuber/v1/payment/' . $orderModel->order_id . '/status',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                $this->samaypeKey
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        $result2 =  $php_array =  json_decode($response, true);
+
+        if ($php_array['status_code'] == 0) {
+            $data = $php_array['data'];
+            $payment_status = $data['status'] == "payment_generated" || $data['status'] == "payment_attempted" ? 'pending' : $data['status'];
+
+            $transaction_id = "";
+            if ($data['status'] == "payment_completed" || $data['status'] == "completed" || $data['status'] == "success") {
+
+
+                $utr =  $data['payee']['rrn'] ?? "";
+                $payment_date = $created_at;
+                $transaction_id = $data['payee']['upi_txn_id'];
+                $order = OrderModel::where("order_num", $order_id)->first(); // Fetch the order by ID
+
+                if ($order) {
+
+
+                    // Update the updated_at field (Laravel automatically does this on save)
+                    $order->updated_at = now();
+                    $order->payment_info = $response;
+
+                    $order->payment_status = "COMPLETED";
+
+
+                    // Save the changes
+                    $order->save();
+                }
+
+                $json['status'] = true;
+                $json['payment_received_status'] = true;
+                $json['payment_status'] = "success";
+                $json['massage'] = "Add Point Success";
+                return response()->json($json);
+            } else {
+                $status_update = "";
+                if (isset($payment_status)) {
+                    $status = $payment_status;
+                    $status_update = ",status='$status'";
+                }
+
+                if ($result2['data']['status'] == "payment_failed" || $result2['data']['status'] == "failed") {
+                    $status = $payment_status = "failed";
+                    $status_update = ",status='$status'";
+                } else if ($result2['data']['status'] == "payment_expired" || $result2['data']['status'] == "expired" || $result2['data']['status'] == "payment_timeout" || $result2['data']['status'] == "timeout") {
+                    $status = $payment_status = ($result2['data']['status'] == "payment_timeout" || $result2['data']['status'] == "timeout") ? "timeout" : "NOT_ATTEMPTED";
+
+
+                    $status_update = ",status='$status'";
+                }
+
+
+                $order = OrderModel::find($order_id); // Fetch the order by ID
+
+                if ($order) {
+                    // Invert the payment_status value
+                    $order->payment_status = !$order->payment_status;
+
+                    // Update the updated_at field (Laravel automatically does this on save)
+                    $order->updated_at = now();
+
+                    // Update a JSON column (e.g., extra_data)
+                    $order->extra_data = json_encode([
+                        'payment_status' => $payment_status,
+                        'payment_info' => $response,
+                        // Add more key-value pairs as needed
+                    ]);
+
+                    // Save the changes
+                    $order->save();
+                }
+
+
+
+                $json['status'] = true;
+                $json['payment_received_status'] = false;
+                $json['payment_status'] = "pending";
+                $json['massage'] = "Please Wait we are verify you payment";
+
+
+                //   Payment Notification on failed
+                if (isset($payment_status) && (strtolower($payment_status) == "cancelled" || strtolower($payment_status) == "failed")) {
+                    $json['payment_status'] = $payment_status;
+                    $json['massage'] = "Payment Failed";
+                }
+                //   Payment Notification on failed
+
+                //   echo $response;
+                return response()->json($json);
+                // return json_encode($json);
+                // exit;
+            }
+
+            $json['status'] = true;
+            $json['payment_received_status'] = false;
+            $json['payment_status'] = "pending";
+            $json['massage'] = "We are verify you payment please wait";
+            return response()->json($json);
+        } else {
+            $json['status'] = true;
+            $json['payment_status'] = "pending";
+            $json['payment_received_status'] = false;
+            $json['massage'] = "Please wait for payment verification";
+            return response()->json($json);
+        }
+
+
+
+        // Skpays status End
+
+
+
+
         // URL for the request
         $url = "https://api.shubhzz-pay.com/api/api/api-module/payin/order-status";
 

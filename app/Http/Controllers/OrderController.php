@@ -210,7 +210,7 @@ class OrderController extends Controller
 
                     // Create order number
                     $orderNumPrefix = "ORD0000";
-                    $orderID = OrderModel::max('id') + 1; // Get the max order ID and increment by 1
+                    $orderID = date('Ymdhis').rand(1000, 9999); // Get the max order ID and increment by 1
                     $orderNum = $orderNumPrefix . $orderID;
                     $server_order_id = "";
                     $intent = "";
